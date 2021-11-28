@@ -1,17 +1,21 @@
 # RESTful-API-Uptime-Monitoring-App
 
+
 # Boahen Elijah Owusu Ewooral owns the design, coding and hosting of this project.
 
 ## I am building a RESTful API for an uptime monitoring application using no npm module nor dependencies but rather just a large chunk of the features available in the Node JS library. I will add some tests and refactor a little bit to make this application better and a bit robust overall.
 
 # What is an UPTIME MONITOR?
+
 * An uptime monitor allows users to enter URLs they want monitored, and receive alerts when those resources go down or come back up. 
 
 * The App will be useable, so I'll include features such as sign-up and sign-in.
 
 * Users will also have their Up and DOWN alerts via SMS, rather than email. 
 
+
 # FUNCTIONALITIES IN THIS API
+
 * This Api will listen on a PORT and accept incoming HTTP requests for POST, GET, PUT, DELETE, and HEAD 
 
 * The API will allow clients to connect, then create a new user, edit and finally delete the user.

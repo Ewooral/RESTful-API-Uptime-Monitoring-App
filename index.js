@@ -6,19 +6,27 @@
  const http = require('http');
  const url = require('url');
  // The server should respond to al requests with a string
- let server = http.createServer(function(req, res){
+ var server = http.createServer(function(req, res){
+
 
 //  Get the URL and parse it 
-const parseUrl = url.parse(req.url, true);
+var parseUrl = url.parse(req.url, true);
 // Get the path
-const path = parseUrl.pathname;
-let trimmedPath = path.replace(/^\/+|\/+$/g, ''); // this trims off any extranious slashes
+var path = parseUrl.pathname;
+var trimmedPath = path.replace(/^\/+|\/+$/g, ''); // this trims off any extranious slashes
+
+// Get the query string as an object
+var queryStringObject = parseUrl.query;
+
 // Get the HTTP method
-let method = req.method.toLowerCase();
+var method = req.method.toLowerCase();
+
 // send the response 
  res.end('Hello, World\n');
+ 
 // Log the request path
-console.log(`Request received on path ${trimmedPath} with the method: ${method}`);
+console.log(`Request received on path ${trimmedPath} with the method: ${method}
+and with these query string parameters: ${JSON.stringify(queryStringObject)} `);
    
  });
 

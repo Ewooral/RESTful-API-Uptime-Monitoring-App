@@ -13,10 +13,12 @@ const parseUrl = url.parse(req.url, true);
 // Get the path
 const path = parseUrl.pathname;
 let trimmedPath = path.replace(/^\/+|\/+$/g, ''); // this trims off any extranious slashes
+// Get the HTTP method
+let method = req.method.toLowerCase();
 // send the response 
  res.end('Hello, World\n');
 // Log the request path
-console.log(`Request received on path ${trimmedPath}`);
+console.log(`Request received on path ${trimmedPath} with the method: ${method}`);
    
  });
 

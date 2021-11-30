@@ -4,14 +4,42 @@
  */
 
 // Dependencies
- const http = require('http');
- const url = require('url');
+ var http = require('http');
+ var https = require('https');
+ var url = require('url');
  var StringDecoder = require('string_decoder').StringDecoder;
  var config = require('./config');
- // The server should respond to al requests with a string
- var server = http.createServer(function(req, res){
+ var fs = require('fs');
 
 
+ // Instantiate the HTTP server 
+ var httpServer = http.createServer(function(req, res){
+ unifiedServer(req, res);
+
+});
+ // start the HTTP server
+ httpServer.listen(config.httpPort, function(){
+    console.log(`Server is running on port, ${config.httpPort}`);
+ });
+
+ // Instantiate the HTTPS server
+ httpsServerOptions = {
+   'key' : fs.readFileSync('./https/key.pem'),
+   'cert' : fs.readFileSync('./https/cert.pem')
+   };
+
+var httpsServer = https.createServer(httpsServerOptions, function(req, res){
+ unifiedServer(req, res);
+
+});
+ // Start the HTTPS server
+ httpsServer.listen(config.httpsPort, function(){
+    console.log(`Server is running on port, ${config.httpsPort}`);
+ });
+
+ // All the server logic for both the http and https server
+ var unifiedServer = function(req, res){
+  
 //  Get the URL and parse it 
 var parseUrl = url.parse(req.url, true);
 // Get the path
@@ -61,19 +89,23 @@ req.on('end', function(){
       // send the response    
 //  res.end('Hello, World\n');
    });
-});
- // start the server, and have it listen on port 5000
- server.listen(config.port, function(){
-    console.log(`Server is running on port, ${config.httpPort} in ${config.envName} mode`);
- });
-// Define the handlers
-var handlers = {};
+ }
 
-// Sample handler
-handlers.sample = function(data, callback){
-// Callback an http status code, and a payload object
-callback(406, {'name': 'sample handler'});
+// Define the handlers
+var handlers = {
+
 };
+
+//ping handler
+handlers.ping = function(data, callback){
+   callback(200);
+};
+
+// // Sample handler
+// handlers.sample = function(data, callback){
+// // Callback an http status code, and a payload object
+// callback(406, {'name': 'sample handler'});
+// };
 
 // Not found handler
 handlers.notFound = function(data, callback){
@@ -81,5 +113,6 @@ callback(404);
 };
  //Define a request router
  var router = {
-    'sample' : handlers.sample
- }
+   //  'sample' : handlers.sample
+   'ping' : handlers.ping
+ };

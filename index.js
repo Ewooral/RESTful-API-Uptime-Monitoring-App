@@ -10,6 +10,57 @@
  var StringDecoder = require('string_decoder').StringDecoder;
  var config = require('./config');
  var fs = require('fs');
+//  var _data = require('./lib/data');
+
+
+ // TEST 
+ // CREATE DATA
+ //@TODO: Remove this before building the real server 
+//  _data.create('test', 'newFile', {'foo' : 'bar'}, function(err){
+//     if(!err){
+//          console.log('Success!');
+//       }
+//       else{
+//          console.log('Error!', err);
+//       }
+//    });
+
+// TEST
+// READ DATA FROM FILE
+ //@TODO: Remove this before building the real server
+// _data.read('test', 'newFile1', function(err, data){
+//     if(!err){
+//          console.log('Success!\n','This was the data => ', data);
+//       }
+//       else{
+//          console.log('Error!', err);
+//       }
+//    });
+
+// TEST
+// UPDATE DATA IN A FILE
+ //@TODO: Remove this before building the real server
+// _data.update('test', 'newFile', {"name" : "Ewooral-Owusu"}, function(err){
+//     if(!err){
+//          console.log('The update was a success!\n');
+//       }
+//       else{
+//          console.log('There was an error!\n', err);
+//       }
+//    });
+
+
+// TEST
+// DELETE DATA IN A FILE
+//  //@TODO: Remove this before building the real server
+// _data.delete('test', 'newFile', function(err){
+//     if(!err){
+//          console.log('File successfully deleted\n');
+//       }
+//       else{
+//          console.log('There was an error!\n', err);
+//       }
+//    });
 
 
  // Instantiate the HTTP server 
@@ -19,7 +70,7 @@
 });
  // start the HTTP server
  httpServer.listen(config.httpPort, function(){
-    console.log(`Server is running on port, ${config.httpPort}`);
+    console.log(`HTTP Server is running on port, ${config.httpPort}`);
  });
 
  // Instantiate the HTTPS server
@@ -34,7 +85,7 @@ var httpsServer = https.createServer(httpsServerOptions, function(req, res){
 });
  // Start the HTTPS server
  httpsServer.listen(config.httpsPort, function(){
-    console.log(`Server is running on port, ${config.httpsPort}`);
+    console.log(`HTTPS Server is running on port, ${config.httpsPort}`);
  });
 
  // All the server logic for both the http and https server

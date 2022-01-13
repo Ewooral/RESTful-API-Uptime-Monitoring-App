@@ -10,6 +10,7 @@
  var StringDecoder = require('string_decoder').StringDecoder;
  var config = require('./config');
  var fs = require('fs');
+ var handlers = require('./lib/handlers');
 //  var _data = require('./lib/data');
 
 
@@ -141,27 +142,7 @@ req.on('end', function(){
 //  res.end('Hello, World\n');
    });
  }
-
-// Define the handlers
-var handlers = {
-
-};
-
-//ping handler
-handlers.ping = function(data, callback){
-   callback(200);
-};
-
-// // Sample handler
-// handlers.sample = function(data, callback){
-// // Callback an http status code, and a payload object
-// callback(406, {'name': 'sample handler'});
-// };
-
-// Not found handler
-handlers.notFound = function(data, callback){
-callback(404);
-};
+ 
  //Define a request router
  var router = {
    //  'sample' : handlers.sample

@@ -146,5 +146,6 @@ req.on('end', function(){
  //Define a request router
  var router = {
    //  'sample' : handlers.sample
-   'ping' : handlers.ping
+   'ping' : handlers.ping,
+   'users' : handlers.users,
  };

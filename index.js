@@ -11,7 +11,7 @@
  var config = require('./config');
  var fs = require('fs');
  var handlers = require('./lib/handlers');
-//  var _data = require('./lib/data');
+ var _data = require('./lib/data');
 
 
  // TEST 
@@ -54,14 +54,14 @@
 // TEST
 // DELETE DATA IN A FILE
 //  //@TODO: Remove this before building the real server
-// _data.delete('test', 'newFile', function(err){
-//     if(!err){
-//          console.log('File successfully deleted\n');
-//       }
-//       else{
-//          console.log('There was an error!\n', err);
-//       }
-//    });
+_data.delete('test', 'newFile', function(err){
+    if(!err){
+         console.log('File successfully deleted\n');
+      }
+      else{
+         console.log('There was an error!\n', err);
+      }
+   });
 
 
  // Instantiate the HTTP server 
